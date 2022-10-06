@@ -166,16 +166,32 @@ for dev in devices:
 #    <target type='virtio' name='org.qemu.guest_agent.0'/>
 #    <address type='virtio-serial' controller='0' bus='0' port='1'/>
 # </channel>
+    if str(dev.tag) == "channel":
+        print('channel attrib: ' +str(dev.attrib))
+        for channel in dev:
+            print('channel: ' +str(channel.tag) + ' value: ' +str(channel.attrib))
 
 # <input type='tablet' bus='usb'>
 #    <address type='usb' bus='0' port='1'/>
 # </input>
 # <input type='mouse' bus='ps2'/>
 # <input type='keyboard' bus='ps2'/>
+    if str(dev.tag) == "input":
+        # device is an input
+        print('input attrib: ' +str(dev.attrib))
+        for input in dev:
+            print('input: ' +str(input.tag) + ' value: ' +str(input.attrib))
+
 # <graphics type='vnc' port='-1' autoport='yes' keymap='fr'>
 #   <listen type='address'/>
 # </graphics>
+    if str(dev.tag) == "graphics":
+        print('graphics attrib: ' +str(dev.attrib))
+        for graphics in dev:
+            print('graphics: ' +str(graphics.tag) + ' value: ' +str(graphics.attrib))
+
 # <audio id='1' type='none'/>
+
 
 # <video>
 #   <model type='virtio' heads='1' primary='yes'/>
@@ -186,19 +202,37 @@ for dev in devices:
         for video in dev:
             print('video: ' +str(video.tag) + ' value: ' +str(video.attrib))
 
-    else:
-        print('Unknow tag: ' +str(dev.tag) + "\n")
-
 # <watchdog model='i6300esb' action='poweroff'>
 #   <address type='pci' domain='0x0000' bus='0x10' slot='0x01' function='0x0'/>
 # </watchdog>
+    if str(dev.tag) == "watchdog":
+        print('watchdog attrib: ' +str(dev.attrib))
+        for watchdog in dev:
+            print('watchdog: ' +str(watchdog.tag) + ' value: ' +str(watchdog.attrib))
+
 # <memballoon model='virtio'>
 #   <address type='pci' domain='0x0000' bus='0x09' slot='0x00' function='0x0'/>
 # </memballoon>
+    if str(dev.tag) == "memballoon":
+        print('memballoon attrib: ' +str(dev.attrib))
+        for memballoon in dev:
+            print('memballoon: ' +str(memballoon.tag) + ' value: ' +str(memballoon.attrib))
+
 # <rng model='virtio'>
 #   <backend model='random'>/dev/urandom</backend>
 #   <address type='pci' domain='0x0000' bus='0x0a' slot='0x00' function='0x0'/>
 # </rng>
+#    if str(dev.tag) == "rng":
+#        print('rng attrib: ' +str(dev.attrib))
+#          for rng in dev:
+#            print('rng: ' +str(rng.tag) + ' value: ' +str(rng.attrib))
+
+    else:
+        if ( "/" in dev.tag == False):
+            print('Unknow tag: ' +str(dev.tag) + "\n")
+        else:
+            print('OK')
 
 
+# write somewhere to test
 tree.write('output.xml')
