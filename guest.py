@@ -26,7 +26,7 @@ if dom == None:
     print('Failed to find the domain '+domName, file=sys.stderr)
     exit(1)
 
-vcpu= 2
+vcpu= 4
 state, maxmem, mem, cpus, cput = dom.info()
 print ('Setting '+str(vcpu) +' Vcpu(s) ' +'to domain '+domName, file=sys.stderr)
 dom.setVcpus(vcpu)

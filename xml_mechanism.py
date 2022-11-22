@@ -21,24 +21,18 @@ import xml.etree.ElementTree as ET
 #Element.pop() -delete a particular attribute.
 #Element.remove() -to delete a complete tag.
 
-XMLexample = """
-<COUNTRIES>
-    <country name ="INDIA">
-        <neighbor name ="Dubai" direction ="W"/>
-    </country>
-    <country name ="Singapore">
-        <neighbor name ="Malaysia" direction ="N"/>
-    </country>
-</COUNTRIES> """
-
 # parsing directly.
-tree = ET.parse('sle15sp34.xml')
+path = './'
+tree = ET.parse(path+'sle15sp34.xml')
 root = tree.getroot()
 # parsing using the string.
 #stringroot = ET.fromstring(XMLexample)
 # printing the root.
 print(root)
 #print(stringroot)
+
+#class guest_info:
+#    def __init__(self):
 
 # <name>sle15sp32</name>
 name = root.find('name').text

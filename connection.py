@@ -17,7 +17,7 @@ class LibVirtConnect:
             try:
                 conn = libvirt.open("qemu:///system")
                 ver = conn.getVersion()
-                print('Connected \nVersion: '+str(ver))
+                #print('Connected \nVersion: '+str(ver))
                 return conn
             except libvirt.libvirtError as e:
                 print(repr(e), file=sys.stderr)
@@ -29,7 +29,7 @@ class LibVirtConnect:
             try:
                 dst_conn = libvirt.open(connector+'://'+dst+'/system')
                 ver = dst_conn.getVersion()
-                print('Connected \nVersion: '+str(ver))
+                #print('Connected \nVersion: '+str(ver))
                 return dst_conn
             except libvirt.libvirtError as e:
                 print(repr(e), file=sys.stderr)
