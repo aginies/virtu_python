@@ -18,8 +18,7 @@
 libvirt template definition
 """
 
-NETWORK_TEMPLATE = """
-<network>
+NETWORK_TEMPLATE = """<network>
     <name>${network_name}</name>
     <uuid>${uuid}</uuid>
     <forward mode='nat'>
@@ -27,19 +26,18 @@ NETWORK_TEMPLATE = """
             <port start='1024' end='65535'/>
         </nat>
     </forward>
-    <bridge name='${bridge}' stp='on' delay='0'/>
-    <ip address='${ip}' netmask='255.255.255.0'>
+    <bridge name='${bridge}' stp='${stp}' delay='0'/>
+    <ip address='${ip}' netmask='${netmask}'>
         <dhcp>
             <range start='${dhcp_start}' end='${dhcp_end}'/>
         </dhcp>
     </ip>
 </network>"""
 
-STORAGE_TEMPLATE = """
-<volume>
+STORAGE_TEMPLATE = """<volume>
   <name>${name}</name>
   <allocation>${allocation}</allocation>
-  <capacity unit="${unit}">${capacity}</capacity>
+  <capacity unit='${unit}'>${capacity}</capacity>
   <target>
   <path>${path}</path>
     <permissions>
